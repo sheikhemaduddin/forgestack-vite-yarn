@@ -6,8 +6,16 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const isProd = process.env.NODE_ENV === 'production';
+const hasBuild = fs.existsSync(path.resolve(__dirname, 'dist/client/index.html'));
+const isProd =
+  process.env.NODE_ENV === 'production' ||
+  (process.env.NODE_ENV !== 'development' && hasBuild);
 const PORT = process.env.PORT || 3000;
+
+const allowedHosts = [
+  'nodejs-40913-999434550.cloudwaysstagingapps.com',
+  '.cloudwaysstagingapps.com',
+];
 
 async function createServer() {
   const app = express();
@@ -15,7 +23,10 @@ async function createServer() {
 
   if (!isProd) {
     const { createServer: createViteServer } = await import('vite');
-    vite = await createViteServer({ server: { middlewareMode: true }, appType: 'custom' });
+    vite = await createViteServer({
+      server: { middlewareMode: true, allowedHosts },
+      appType: 'custom',
+    });
     app.use(vite.middlewares);
   } else {
     const compression = (await import('compression')).default;

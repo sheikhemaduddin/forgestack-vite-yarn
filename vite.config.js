@@ -9,4 +9,10 @@ export default defineConfig({
       '.cloudwaysstagingapps.com',
     ],
   },
+  preview: {
+    allowedHosts: [
+      'nodejs-40913-999434550.cloudwaysstagingapps.com',
+      '.cloudwaysstagingapps.com',
+    ],
+  },
 });
