@@ -4,7 +4,7 @@
 |-------|-------|
 | Framework Preset | Vite |
 | Package Manager | yarn |
-| Build Command | `yarn install && yarn build` (runs client + ssr sub-builds) |
+| Build Command | `yarn build` (do **not** use `run build` — Cloudways must invoke `yarn build` or `bash build.sh`) |
 | Output Directory | `dist` |
 | Entry File | src/entry-server.jsx (+ server.js) |
 | Start Command | `yarn start` |
