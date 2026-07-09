@@ -5,7 +5,7 @@
   "description": "Vite SSR (server entry required, express render server) — Cloudways launch test",
   "type": "module",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "VITE_LOCAL_DEV=1 node server.js",
     "build": "vite build --outDir dist/client && vite build --ssr src/entry-server.jsx --outDir dist/server",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.jsx --outDir dist/server",

@@ -7,15 +7,10 @@ import express from 'express';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const hasBuild = fs.existsSync(path.resolve(__dirname, 'dist/client/index.html'));
-const isProd =
-  process.env.NODE_ENV === 'production' ||
-  (process.env.NODE_ENV !== 'development' && hasBuild);
+// Cloudways staging often sets NODE_ENV=development; prefer built artifacts when present.
+const isLocalDev = process.env.VITE_LOCAL_DEV === '1';
+const isProd = !isLocalDev && (process.env.NODE_ENV === 'production' || hasBuild);
 const PORT = process.env.PORT || 3000;
-
-const allowedHosts = [
-  'nodejs-40913-999434550.cloudwaysstagingapps.com',
-  '.cloudwaysstagingapps.com',
-];
 
 async function createServer() {
   const app = express();
@@ -24,7 +19,7 @@ async function createServer() {
   if (!isProd) {
     const { createServer: createViteServer } = await import('vite');
     vite = await createViteServer({
-      server: { middlewareMode: true, allowedHosts },
+      server: { middlewareMode: true, allowedHosts: true },
       appType: 'custom',
     });
     app.use(vite.middlewares);
@@ -60,7 +55,11 @@ async function createServer() {
     }
   });
 
-  app.listen(PORT, () => console.log(`[vite-ssr] listening on ${PORT} (prod=${isProd})`));
+  app.listen(PORT, () => {
+    console.log(
+      `[vite-ssr] listening on ${PORT} (prod=${isProd}, hasBuild=${hasBuild}, NODE_ENV=${process.env.NODE_ENV ?? 'unset'})`
+    );
+  });
 }
 
 createServer();
