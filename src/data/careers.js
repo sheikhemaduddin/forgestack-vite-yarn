@@ -1,0 +1,61 @@
+export const jobs = [
+  {
+    id: 'sr-backend',
+    title: 'Senior Backend Engineer',
+    team: 'Platform',
+    location: 'Remote (US/EU)',
+    type: 'Full-time',
+    description: 'Build the core deployment engine and API that powers millions of deploys per month.',
+  },
+  {
+    id: 'sr-frontend',
+    title: 'Senior Frontend Engineer',
+    team: 'Product',
+    location: 'Remote (US/EU)',
+    type: 'Full-time',
+    description: 'Own the ForgeStack dashboard — real-time metrics, deployment timelines, and team collaboration.',
+  },
+  {
+    id: 'devops-sre',
+    title: 'Site Reliability Engineer',
+    team: 'Infrastructure',
+    location: 'San Francisco, CA',
+    type: 'Full-time',
+    description: 'Keep our 99.99% uptime SLA. Build automation for incident response and capacity planning.',
+  },
+  {
+    id: 'product-designer',
+    title: 'Product Designer',
+    team: 'Design',
+    location: 'Remote (US/EU)',
+    type: 'Full-time',
+    description: 'Design developer tools that are powerful yet approachable. Shape the ForgeStack design system.',
+  },
+  {
+    id: 'developer-advocate',
+    title: 'Developer Advocate',
+    team: 'Developer Relations',
+    location: 'Remote (Global)',
+    type: 'Full-time',
+    description: 'Create content, speak at conferences, and be the voice of our developer community.',
+  },
+  {
+    id: 'account-exec',
+    title: 'Enterprise Account Executive',
+    team: 'Sales',
+    location: 'New York, NY',
+    type: 'Full-time',
+    description: 'Help enterprise teams migrate to ForgeStack. Own the full sales cycle from demo to close.',
+  },
+];
+
+export const benefits = [
+  'Competitive salary + equity',
+  'Remote-first culture',
+  'Unlimited PTO (minimum 4 weeks encouraged)',
+  '$3,000 home office stipend',
+  'Health, dental, and vision (100% covered)',
+  'Annual team offsite',
+  '$1,500 learning budget',
+  '16 weeks parental leave',
+];
